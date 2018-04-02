@@ -1,0 +1,13 @@
+.company-tag-index,.company-tag-update{font-family: "微软雅黑";}
+.company-tag-update h1{font-size: 2em; margin: 0.67em 0;}
+.company-trade-detail {padding-bottom: 10px;}
+.company-trade-detail div{clear: both;}
+.company-trade-detail img{float: left; width: 50px; cursor: pointer;}
+.company-trade-detail span{float: left; padding-left: 10px; max-width: 450px;}
+.cropper-size {width: 300px;}
+.avatar-wrapper .cropper-container{width: 400px;}
+#labels {min-height: 90px;}
+#labels label{display: block;}
+#labels h4{display: inline; cursor: pointer;}
+#logo {width: 80px; float: left; margin-right: 20px;}
+.logo_m {width: 50px;}

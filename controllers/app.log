@@ -1,0 +1,50 @@
+2015-08-21 19:16:26 [202.114.20.84][111][hu6tos7h730u13ge4dd70nh8s6][error][yii\base\ErrorException:4] exception 'yii\base\ErrorException' with message 'syntax error, unexpected end of file' in /var/www/html/mjtool/views/mjpic/index.php:80
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2015-08-21 19:16:26 [202.114.20.84][111][hu6tos7h730u13ge4dd70nh8s6][info][application] $_COOKIE = [
+    '_csrf' => '735cd2352cb826412c632cc337b286991e6019b8fd714551a6e53dcf4036bfbaa:2:{i:0;s:5:\"_csrf\";i:1;s:32:\"RucapNkeUSUWHZ3Ib1ShmCk9CV5LNHJx\";}'
+    'PHPSESSID' => '02n24tg40n0hdcibm0ke100s01'
+    '_identity' => '02c848a8a40aff012d96d1a889052ef1af6edbc6e922064facaffe333b196192a:2:{i:0;s:9:\"_identity\";i:1;s:28:\"[\"111\",\"test111key\",2592000]\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+    '__id' => '111'
+]
+
+$_SERVER = [
+    'USER' => 'apache'
+    'HOME' => '/usr/share/httpd'
+    'FCGI_ROLE' => 'RESPONDER'
+    'QUERY_STRING' => ''
+    'REQUEST_METHOD' => 'GET'
+    'CONTENT_TYPE' => ''
+    'CONTENT_LENGTH' => ''
+    'SCRIPT_NAME' => '/index.php'
+    'REQUEST_URI' => '/mjpic'
+    'DOCUMENT_URI' => '/index.php'
+    'DOCUMENT_ROOT' => '/var/www/html/mjtool/web'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_SOFTWARE' => 'nginx/1.8.0'
+    'REMOTE_ADDR' => '202.114.20.84'
+    'REMOTE_PORT' => '53371'
+    'SERVER_ADDR' => '123.56.42.245'
+    'SERVER_PORT' => '8889'
+    'SERVER_NAME' => ''
+    'REDIRECT_STATUS' => '200'
+    'SCRIPT_FILENAME' => '/var/www/html/mjtool/web//index.php'
+    'HTTP_HOST' => '123.56.42.245:8889'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, sdch'
+    'HTTP_ACCEPT_LANGUAGE' => 'zh-CN,zh;q=0.8'
+    'HTTP_COOKIE' => '_csrf=735cd2352cb826412c632cc337b286991e6019b8fd714551a6e53dcf4036bfbaa%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22RucapNkeUSUWHZ3Ib1ShmCk9CV5LNHJx%22%3B%7D; PHPSESSID=02n24tg40n0hdcibm0ke100s01; _identity=02c848a8a40aff012d96d1a889052ef1af6edbc6e922064facaffe333b196192a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A28%3A%22%5B%22111%22%2C%22test111key%22%2C2592000%5D%22%3B%7D'
+    'PHP_SELF' => '/index.php'
+    'REQUEST_TIME_FLOAT' => 1440155786.9401
+    'REQUEST_TIME' => 1440155786
+]

@@ -1,0 +1,16 @@
+<div class="container">
+	<a class="btn btn-primary" href="#/new">添加</a>
+	<a class="btn btn-success" href="#/edit/{{data.id}}">修改</a>
+	<a class="btn btn-danger" ng-click="delete(data.id)">删除</a>
+	<h1>{{data.company_tag}} {{data.year}} {{data.work_name}}</h1>
+	<span class="label label-info" ng-repeat="work_category_id in data.work_category">{{work_categories[work_category_id]}}</span>
+	<ng ng-repeat="(index, q_a) in data.question_answer">
+		<hr/>
+		<h2>第{{index+1}}题</h2>
+		<strong>题目</strong>
+		<div ng-bind-html="q_a.question"></div>
+		<hr/>
+		<strong>答案</strong>
+		<div ng-bind-html="q_a.answer"></div>
+	</ng>
+</div>

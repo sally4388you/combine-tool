@@ -1,0 +1,37 @@
+{
+    "name": "gerpayt/yii2-ueditor",
+    "authors": [
+        {
+            "name": "Chen Feng",
+            "email": "gerpayt@qq.com",
+            "homepage": "http://blog.gerpayt.cn"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/gerpayt/yii2-ueditor/issues",
+        "source": "https://github.com/gerpayt/yii2-ueditor"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "gerpayt/yii2-ueditor",
+                "version": "dev-master",
+                "source": {
+                    "url": "git://github.com/gerpayt/yii2-ueditor.git",
+                    "type": "git",
+                    "reference": "master"
+                }
+            }
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "gerpayt\\yii2_ueditor\\" : ""
+        }
+    }
+}

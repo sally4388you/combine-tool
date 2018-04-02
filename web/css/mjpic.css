@@ -1,0 +1,51 @@
+.mj-pics {
+	display: inline-block;
+	list-style: none;
+}
+.mj-pics li {
+	float: left;
+	margin: 10px 5px;
+}
+.mj-pics img{
+	height: 120px;
+	width: auto;
+	border: 3px solid #fff;
+	box-shadow: 0 0 5px rgba(0,0,0,.15);
+	border-radius: 5px;
+}
+.mj-pics span{
+	display: block;
+	text-align: center;
+}
+.mj-pics .close-btn{
+	width: 196px;
+	height: 120px;
+	position: relative;
+	margin-left: -196px;
+	margin-top: -120px;
+}
+.mj-pics .close-btn i{
+	margin-left: 158px;
+}
+
+#avatarInput {
+	width: 70%;
+	margin: 0px;
+	display: inline-block;
+}
+
+#get-btn {
+	display: inline;
+	margin-left: 10px;
+}
+
+.avatar-wrapper {
+	height: 364px;
+  	width: 100%;
+  	margin-left: 0px !important;
+}
+
+#count{
+	display: inline-block;
+	vertical-align: top;
+}

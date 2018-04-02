@@ -1,0 +1,33 @@
+<div class="container">
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th><a ng-click="sort_toggle('id')">id <i ng-show="'id'=== params.sort_by" class="fa" ng-class="{true:'fa-sort-alpha-asc',false:'fa-sort-alpha-desc'}[params.sort_order==='asc']"></i></a></th>
+				<th>名称</th>
+				<th><a ng-click="sort_toggle('company_tag_id')">公司 <i ng-show="'company_tag_id'=== params.sort_by" class="fa" ng-class="{true:'fa-sort-alpha-asc',false:'fa-sort-alpha-desc'}[params.sort_order==='asc']"></i></a></th>
+				<th><a ng-click="sort_toggle('year')">年份 <i ng-show="'year'=== params.sort_by" class="fa" ng-class="{true:'fa-sort-alpha-asc',false:'fa-sort-alpha-desc'}[params.sort_order==='asc']"></i></a></th>
+				<th><a ng-click="sort_toggle('work_name')">岗位 <i ng-show="'work_name'=== params.sort_by" class="fa" ng-class="{true:'fa-sort-alpha-asc',false:'fa-sort-alpha-desc'}[params.sort_order==='asc']"></i></a></th>
+				<th><a ng-click="sort_toggle('created_at')">添加时间 <i ng-show="'created_at'=== params.sort_by" class="fa" ng-class="{true:'fa-sort-alpha-asc',false:'fa-sort-alpha-desc'}[params.sort_order==='asc']"></i></a></th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr id="list_{{item.id}}" ng-repeat="(index, item) in data">
+				<td>{{index+1}}</td>
+				<td>{{item.id}}</td>
+				<td>{{item.company_tag}} {{item.year}} {{item.work_name}}</td>
+				<td>{{item.company_tag}}</td>
+				<td>{{item.year}}</td>
+				<td>{{item.work_name}}</td>
+				<td>{{item.created_at}}</td>
+				<td>
+					<a href="#/edit/{{item.id}}"><i class="fa fa-pencil fa-lg"></i></a>
+					<a href="#/view/{{item.id}}"><i class="fa fa-eye fa-lg"></i></a>						
+					<a ng-click="delete(item.id)"><i class="fa fa-close fa-lg"></i></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<pagination ng-change="search()" ng-model = 'params.start' total-items="count" items-per-page="params.length" first-text="«" last-text="»" previous-text="‹" next-text="›" boundary-links="true"></pagination>
+</div>

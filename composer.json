@@ -1,0 +1,36 @@
+{
+    "name": "bandaot/mjtool",
+    "description": "haitou",
+    "keywords": ["yii2", "framework", "advanced", "application template"],
+    "homepage": "http://www.haitou.cc/",
+    "type": "project",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "~2.0.0",
+        "yiisoft/yii2-bootstrap": "*",
+        "gerpayt/yii2-ueditor": "dev-master",
+        "FortAwesome/Font-Awesome": "*"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "preferred-install": "dist"
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/gerpayt/yii2-ueditor"
+        }
+    ]
+}

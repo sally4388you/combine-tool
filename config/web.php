@@ -49,7 +49,7 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
     ],
     'timeZone' => 'Asia/Shanghai',
-    'language' => 'zh-CN',
+    'language' => 'en',
     'params' => $params,
 ];
 

@@ -2,7 +2,7 @@
 	use yii\helpers\Url;
 	$this->registerJsFile("/js/combine.js", ['depends' => ['yii\bootstrap\BootstrapPluginAsset','app\assets\AppAsset']]);
 	$this->registerCssFile("/css/combine.css");
-	$lang = empty(Yii::$app->session['language']) ? 'en' : Yii::$app->session['language'];
+	$lang = Yii::$app->request->get('lang', Yii::$app->session['language']);
 ?>
 
 	<div id="operation">

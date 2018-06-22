@@ -10,6 +10,7 @@ use app\assets\AppAsset;
 /* @var $content string */
 
 AppAsset::register($this);
+Yii::$app->session['language'] = Yii::$app->request->get('lang', Yii::$app->session['language']);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -48,6 +49,7 @@ AppAsset::register($this);
                         ['label' => Yii::$app->params[$lang]['logout'].' (' . Yii::$app->user->identity->username . ')',
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']],
+                        ['label' => Yii::$app->params[$lang]['language'], 'url' => '?lang='.($lang == 'en'?'zh-CN':'en')],
                 ],
             ]);
             NavBar::end();

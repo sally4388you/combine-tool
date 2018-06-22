@@ -10,7 +10,8 @@ use app\assets\AppAsset;
 /* @var $content string */
 
 AppAsset::register($this);
-Yii::$app->session['language'] = Yii::$app->request->get('lang', Yii::$app->session['language']);
+Yii::$app->language = Yii::$app->request->get('lang', Yii::$app->language);
+$lang = Yii::$app->language;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,7 +28,6 @@ Yii::$app->session['language'] = Yii::$app->request->get('lang', Yii::$app->sess
         <?php $this->beginBody() ?>
         <div class="wrap">
             <?php
-            $lang = empty(Yii::$app->session['language']) ? 'en' : Yii::$app->session['language'];
             NavBar::begin([
                 // 'brandLabel' => '面经管理',
                 'brandLabel' => Yii::$app->params[$lang]['interview_exp'],

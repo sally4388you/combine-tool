@@ -26,23 +26,26 @@ AppAsset::register($this);
         <?php $this->beginBody() ?>
         <div class="wrap">
             <?php
+            $lang = empty(Yii::$app->session['language']) ? 'en' : Yii::$app->session['language'];
             NavBar::begin([
-                'brandLabel' => '面经管理',
+                // 'brandLabel' => '面经管理',
+                'brandLabel' => Yii::$app->params[$lang]['interview_exp'],
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
-            echo '<a class="navbar-brand" href="/exams#/">笔试真题</a>';
+            // echo '<a class="navbar-brand" href="/exams#/">笔试真题</a>';
+            echo '<a class="navbar-brand" href="/exams#/">'. Yii::$app->params[$lang]['written_test'] .'</a>';
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => '添加面经', 'url' => ['/article/create']],
-                    ['label' => '进行分类', 'url' => ['/article?groupby=1']],
-                    ['label' => '添加真题', 'url' => ['/exams#/new']],
+                    ['label' => Yii::$app->params[$lang]['add_inter'], 'url' => ['/article/create']],
+                    ['label' => Yii::$app->params[$lang]['classify'], 'url' => ['/article?groupby=1']],
+                    ['label' => Yii::$app->params[$lang]['add_written'], 'url' => ['/exams#/new']],
                     Yii::$app->user->isGuest ?
-                        ['label' => '登录', 'url' => ['/site/login']] :
-                        ['label' => '注销 (' . Yii::$app->user->identity->username . ')',
+                        ['label' => Yii::$app->params[$lang]['login'], 'url' => ['/site/login']] :
+                        ['label' => Yii::$app->params[$lang]['logout'].' (' . Yii::$app->user->identity->username . ')',
                         'url' => ['/site/logout'],
                         'linkOptions' => ['data-method' => 'post']],
                 ],

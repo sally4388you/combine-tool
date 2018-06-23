@@ -25,7 +25,7 @@ h4 {display: inline-block; margin-right: 10px; cursor: pointer;}
 .searched {box-shadow:0px 0px 8px #6318A8 !important;}
 
 /*------------operation part----------------------------------*/
-#operation {padding: 10px 0px; z-index: 10; width: 57%; background-color: #fff; top: 50px;}
+#operation {padding: 10px 0px; z-index: 10; /*width: 66.7%;*/ background-color: #fff; top: 50px;}
 #renameForm {margin-top: 10px; display: inline-block; margin-left: 20px;}
 #renameForm input{width: 200px; display: inline-block;}
 .list-btn {background-color: #101010; border: none; padding: 7px 18px; color: #fff; font-size: 1.2em;}

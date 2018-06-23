@@ -6,7 +6,7 @@
 	$lang = Yii::$app->request->get('lang', Yii::$app->language);
 ?>
 
-	<div id="operation">
+	<div id="operation" class="col-md-8">
 		<a href="/filltrade" class="list-btn"><?= Yii::$app->params[$lang]['list'] ?></a>
 		<form id="renameForm" onsubmit="return false;">
 			<?= Yii::$app->params[$lang]['rename'] ?><input class="form-control" id="rename" readonly>
@@ -21,7 +21,7 @@
 	<?php endforeach; echo $count;?>
 
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4" style="z-index: 20;">
 		<div class="affixed-element-bottom js-affixed-element-bottom">
 			<div class="panel panel-info my-panel" style="width: 350px;">
 				<div class="panel-heading"><h3 class="panel-title"><?= Yii::$app->params[$lang]['search'] ?></h3></div>

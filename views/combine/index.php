@@ -3,7 +3,10 @@
 	$this->registerJsFile("/js/combine.js", ['depends' => ['yii\bootstrap\BootstrapPluginAsset','app\assets\AppAsset']]);
 	$this->registerCssFile("/css/combine.css");
 	$this->title = "Combine Tool";
-	$lang = Yii::$app->request->get('lang', Yii::$app->language);
+
+	$session = Yii::$app->session;
+	$lang = Yii::$app->request->get('lang', false);
+	$lang = $lang ? $lang : ($session->has('language') ? $session->get('language') : Yii::$app->language);
 ?>
 
 	<div id="operation" class="col-md-8">

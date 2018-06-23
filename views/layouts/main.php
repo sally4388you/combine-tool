@@ -10,8 +10,15 @@ use app\assets\AppAsset;
 /* @var $content string */
 
 AppAsset::register($this);
-Yii::$app->language = Yii::$app->request->get('lang', Yii::$app->language);
-$lang = Yii::$app->language;
+
+$session = Yii::$app->session;
+if (!$session->isActive) $session->open();
+
+if (!$session->has('language') || Yii::$app->request->get('lang', false)) {
+    $session->set('language', Yii::$app->request->get('lang', Yii::$app->language));
+}
+
+$lang = $session->get('language');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

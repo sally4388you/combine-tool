@@ -10,6 +10,7 @@ use yii\bootstrap\ActiveForm;
 $session = Yii::$app->session;
 $lang = Yii::$app->request->get('lang', false);
 $lang = $lang ? $lang : ($session->has('language') ? $session->get('language') : Yii::$app->language);
+Yii::$app->language = $lang;
 
 $this->title = Yii::$app->params[$lang]['login'];
 ?>

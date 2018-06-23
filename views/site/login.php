@@ -11,6 +11,7 @@ $session = Yii::$app->session;
 $lang = Yii::$app->request->get('lang', false);
 $lang = $lang ? $lang : ($session->has('language') ? $session->get('language') : Yii::$app->language);
 
+$this->title = Yii::$app->params[$lang]['login'];
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>

@@ -42,11 +42,24 @@ $config = [
             'showScriptName' => false,
             'enableStrictParsing' => false, 
             'rules' => [
-                '/' => 'article/index',
+                '/' => 'combine',
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'exam'],
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        'i18n' => [
+            'translations' => [
+                'app*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    // 'basePath' => '@app/messages',
+                    // 'sourceLanguage' => 'en-US',
+                    // 'fileMap' => [
+                    //     'app' => 'yii.php',
+                    //     'app/error' => 'error.php',
+                    // ],
+                ],
+            ],
+        ],
     ],
     'timeZone' => 'Asia/Shanghai',
     'language' => 'en',

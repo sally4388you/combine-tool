@@ -2,6 +2,7 @@
 	use yii\helpers\Url;
 	$this->registerJsFile("/js/combine.js", ['depends' => ['yii\bootstrap\BootstrapPluginAsset','app\assets\AppAsset']]);
 	$this->registerCssFile("/css/combine.css");
+	$this->title = "Combine Tool";
 	$lang = Yii::$app->request->get('lang', Yii::$app->language);
 ?>
 

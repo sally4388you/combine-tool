@@ -34,6 +34,7 @@ return [
 					delete键：删除<br />
 					s键，处理键：标记为已处理<br />
 					双击：放入待处理区域',
+		'login_msg' => '请输入账号密码：',
     ],
 
     'en' => [
@@ -67,6 +68,7 @@ return [
 					Click: Search; Check combined lables; <br />
 					Key Delete: Delete;<br />
 					Key S: Labelled as processed; <br /> 
-					Double click: Put label to the pending area;'
+					Double click: Put label to the pending area;',
+		'login_msg' => 'Please enter your username and password:',
     ],
 ];

@@ -7,12 +7,13 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
-$this->title = '登录';
+$lang = Yii::$app->request->get('lang', Yii::$app->language);
+$this->title = Yii::$app->params[$lang]['login'];
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>请输入账号密码:</p>
+    <p><?= Yii::$app->params[$lang]['login_msg'] ?></p>
 
     <?php
     $form = ActiveForm::begin([
@@ -37,7 +38,7 @@ $form->field($model, 'rememberMe')->checkbox([
 
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">
-<?= Html::submitButton('登录', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+        <?= Html::submitButton(Yii::$app->params[$lang]['login'], ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
         </div>
     </div>
 

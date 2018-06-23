@@ -124,8 +124,8 @@ class User extends \yii\base\Object implements \yii\web\IdentityInterface {
         ],
         '116' => [
             'id' => '116',
-            'username' => '其佈尔',
-            'password' => '199551',
+            'username' => 'qibuer',
+            'password' => '123456',
             'authKey' => 'test116key',
             'accessToken' => '116-token',
         ],

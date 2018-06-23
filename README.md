@@ -1,6 +1,7 @@
 ### Online sample please check:
 
 http://123.207.124.224:88/combine
+Account for testing: 
 
 ### Function of this tool:
 * Combine company names which mean exactly the same company.

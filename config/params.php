@@ -53,7 +53,7 @@ return [
 		'combined' => 'Combined',
 		'pending' => 'Pending',
 		'process' => 'Process',
-		'help' => 'Help',
+		'help' => 'Color Legend',
 		'related' => 'Related Stuff',
 		'deleted' => 'Deleted List',
 		'related_title' => 'Related Interview Experience and Written Test',

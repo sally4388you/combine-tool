@@ -10,11 +10,19 @@
 ?>
 
 	<div id="operation" class="col-md-8">
-		<a href="/filltrade" class="list-btn"><?= Yii::$app->params[$lang]['list'] ?></a>
+		<!-- <a href="/filltrade" class="list-btn"><?php // Yii::$app->params[$lang]['list'] ?></a> -->
 		<form id="renameForm" onsubmit="return false;">
 			<?= Yii::$app->params[$lang]['rename'] ?><input class="form-control" id="rename" readonly>
 		</form>
-		<div id="tips"></div>
+        <div id="tips"></div>
+        <a href="javascript:void(0);" class="js-popover legend" 
+            data-container="body" data-toggle="popover" data-placement="right" data-html="true"
+            data-content="<?= Yii::$app->params[$lang]['help_msg'] ?>">
+            <i class="far fa-list-alt"></i> <?= Yii::$app->params[$lang]['help'] ?>
+        </a>
+        <a href="<?= Url::to(['combine/trash-list']) ?>" class="trash">
+            <i class='fa fa-trash'></i> <?= Yii::$app->params[$lang]['deleted'] ?>
+        </a>
 	</div>
 	<div id="labels" class="col-md-8">
 
@@ -42,14 +50,9 @@
 				<div class="panel-heading"><h3 class="panel-title"><?= Yii::$app->params[$lang]['pending'] ?></h3></div>
 				<div class="panel-body my-panel-body" id="dealing"></div>
 			</div>
-			<a href="<?= Url::to(['combine/trash-list']) ?>" class="trash"><i class='fa fa-trash fa-2x'></i><?= Yii::$app->params[$lang]['deleted'] ?></a>
 			<!-- <a href="javascript:void(0);"><i class='fa fa-tags fa-2x'></i><?php// Yii::$app->params[$lang]['process'] ?></a> -->
-			<a href="javascript:void(0);" class="js-popover" 
-				data-container="body" data-toggle="popover" data-placement="right" data-html="true"
-				data-content="<?= Yii::$app->params[$lang]['help_msg'] ?>">
-				<i class='fa fa-warning fa-2x'></i><?= Yii::$app->params[$lang]['help'] ?>
-			</a>
-			<a href="javascript:void(0)" id="list"><i class='fa fa-indent fa-2x'></i><?= Yii::$app->params[$lang]['related'] ?></a>
+            <!-- <a href="javascript:void(0)" id="list"><i class='fa fa-indent fa-2x'></i><?php // Yii::$app->params[$lang]['related'] ?></a> -->
+
 		</div>
 	</div>
 

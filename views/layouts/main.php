@@ -37,20 +37,20 @@ $lang = $session->get('language');
             <?php
             NavBar::begin([
                 // 'brandLabel' => '面经管理',
-                'brandLabel' => Yii::$app->params[$lang]['interview_exp'],
-                'brandUrl' => Yii::$app->homeUrl,
+                // 'brandLabel' => Yii::$app->params[$lang]['interview_exp'],
+                // 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             // echo '<a class="navbar-brand" href="/exams#/">笔试真题</a>';
-            echo '<a class="navbar-brand" href="/exams#/">'. Yii::$app->params[$lang]['written_test'] .'</a>';
+            // echo '<a class="navbar-brand" href="/exams#/">'. Yii::$app->params[$lang]['written_test'] .'</a>';
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => Yii::$app->params[$lang]['add_inter'], 'url' => ['/article/create']],
-                    ['label' => Yii::$app->params[$lang]['classify'], 'url' => ['/article?groupby=1']],
-                    ['label' => Yii::$app->params[$lang]['add_written'], 'url' => ['/exams#/new']],
+                    // ['label' => Yii::$app->params[$lang]['add_inter'], 'url' => ['/article/create']],
+                    // ['label' => Yii::$app->params[$lang]['classify'], 'url' => ['/article?groupby=1']],
+                    // ['label' => Yii::$app->params[$lang]['add_written'], 'url' => ['/exams#/new']],
                     Yii::$app->user->isGuest ?
                         ['label' => Yii::$app->params[$lang]['login'], 'url' => ['/site/login']] :
                         ['label' => Yii::$app->params[$lang]['logout'].' (' . Yii::$app->user->identity->username . ')',

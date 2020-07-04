@@ -20,21 +20,23 @@ var combine = (function($) {
         drop : function(thisdiv) {//this is target;
             thisdiv.className = thisdiv.className.replace(/ dragover/, "");
             var eleDrag_id = eleDrag.id.match(/\d+/);
-            var target_id = thisdiv.id.replace("group", "");           
+            var target_id = thisdiv.id.replace("group", "");
 
-            if (eleDrag == null) return;
-            if (target_id == eleDrag_id) return false;
-            if (eleDrag) {
-                this.change(target_id, eleDrag_id);
-                this.clear($("#group" + eleDrag_id)[0]);
-                $.post("/combine/merge", "el=" + eleDrag_id + "&target=" + target_id, function(data) {
-                    if (typeof(data) == 'object') {
-                        $('#tips').html(tags.tgs[eleDrag_id][1] + "<font color='#000'> is merged into </font>" + tags.tgs[target_id][1]);
-                        detailBox.showDetail(data);
-                    }
-                    else alert('Something is wrong. Please refresh the page');
-                });
-            }
+            alert('Merge functionality is diabled due to demo purpose.');
+
+            // if (eleDrag == null) return;
+            // if (target_id == eleDrag_id) return false;
+            // if (eleDrag) {
+            //     this.change(target_id, eleDrag_id);
+            //     this.clear($("#group" + eleDrag_id)[0]);
+            //     $.post("/combine/merge", "el=" + eleDrag_id + "&target=" + target_id, function(data) {
+            //         if (typeof(data) == 'object') {
+            //             $('#tips').html(tags.tgs[eleDrag_id][1] + "<font color='#000'> is merged into </font>" + tags.tgs[target_id][1]);
+            //             detailBox.showDetail(data);
+            //         }
+            //         else alert('Something is wrong. Please refresh the page');
+            //     });
+            // }
         },
         change : function(target_id, eleDrag_id) {
             //changes in className,fadeOut,cursor
@@ -95,25 +97,26 @@ var combine = (function($) {
                         }
                         tags.rename.thisdiv.className = "btn btn-sm btn-" + tags.tgs[id][0] + " mybutton";
                         var string = "id=" + id + "&name=" + name.replace(/&/g, '%26') + "&rename_d=" + tags.rename.rename_d;
-                        $.post("/combine/rename", string, function(data) {
-                            if (data == "") {
-                                tags.tgs[id][1] = name;
-                                tags.rename.init();
-                            } else if (/remainId/.test(data)) {
-                                var obj = eval ("(" + data + ")");
-                                tags.clear($('#group' + obj.initId)[0]);
-                                $('#tips').html(tags.tgs[obj.initId][1] + "<font color='#000'> is merged into </font>" + tags.tgs[obj.remainId][1]);
-                            } else if(/有重名/.test(data)) {
-                                if (confirm(data)) {
-                                    tags.rename.rename_d = true;
-                                    $('#renameForm')[0].onsubmit();
-                                }
-                            } else {
-                                alert(data);
-                            }
-                        });
+                        // $.post("/combine/rename", string, function(data) {
+                        //     if (data == "") {
+                        //         tags.tgs[id][1] = name;
+                        //         tags.rename.init();
+                        //     } else if (/remainId/.test(data)) {
+                        //         var obj = eval ("(" + data + ")");
+                        //         tags.clear($('#group' + obj.initId)[0]);
+                        //         $('#tips').html(tags.tgs[obj.initId][1] + "<font color='#000'> is merged into </font>" + tags.tgs[obj.remainId][1]);
+                        //     } else if(/有重名/.test(data)) {
+                        //         if (confirm(data)) {
+                        //             tags.rename.rename_d = true;
+                        //             $('#renameForm')[0].onsubmit();
+                        //         }
+                        //     } else {
+                        //         alert(data);
+                        //     }
+                        // });
+                        alert('Functionality is diabled due to demo purpose.')
                     } else {
-                        alert('修改名称不能为空');
+                        alert('Field cannot be empty.');
                         $('#rename').val(tags.rename.textInit);
                         tags.rename.thisdiv.innerHTML = tags.rename.textInit;
                     }

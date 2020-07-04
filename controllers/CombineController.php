@@ -69,106 +69,106 @@ class CombineController extends Controller
     }
 
     public function actionMerge() {
-        $target = Yii::$app->request->post('target', 2000);
-        $el = Yii::$app->request->post('el', 6);
-        if ($target == '' || $el == '') {
-            return 'error';
-        } else {
-            //merge
-            $combines = Combine::updateAll(['group_id' => $target], ['or', ['group_id' => $el], ['id' => $el], ['id' => $target]]);
-            //change trade's type
-            $trade_old = CompanyTrade::findOne(['group_id' => $el]);
-            $trade_new = CompanyTrade::findOne(['group_id' => $target]);
-            if ($trade_old != null) {
-                if ($trade_new == null) {
-                    $trade_old->group_id = $target;
-                    $trade_old->update();
-                }
-            }
-            //rename picture's name
-            $oldname = '../web/logo/' . $el . '.png';
-            $newname = '../web/logo/' . $target . '.png';
-            if (file_exists($oldname)) {
-                if (file_exists($newname)) {
-                    @unlink ($oldname);
-                } else {
-                    rename($oldname, $newname);
-                }
-            }
+        // $target = Yii::$app->request->post('target', 2000);
+        // $el = Yii::$app->request->post('el', 6);
+        // if ($target == '' || $el == '') {
+        //     return 'error';
+        // } else {
+        //     //merge
+        //     $combines = Combine::updateAll(['group_id' => $target], ['or', ['group_id' => $el], ['id' => $el], ['id' => $target]]);
+        //     //change trade's type
+        //     $trade_old = CompanyTrade::findOne(['group_id' => $el]);
+        //     $trade_new = CompanyTrade::findOne(['group_id' => $target]);
+        //     if ($trade_old != null) {
+        //         if ($trade_new == null) {
+        //             $trade_old->group_id = $target;
+        //             $trade_old->update();
+        //         }
+        //     }
+        //     //rename picture's name
+        //     $oldname = '../web/logo/' . $el . '.png';
+        //     $newname = '../web/logo/' . $target . '.png';
+        //     if (file_exists($oldname)) {
+        //         if (file_exists($newname)) {
+        //             @unlink ($oldname);
+        //         } else {
+        //             rename($oldname, $newname);
+        //         }
+        //     }
 
-            $allData = Combine::find()->select(['id', 'name'])->where("`group_id` = $target AND `id` != $target")->all();
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['group' => $allData];
-        }
+        //     $allData = Combine::find()->select(['id', 'name'])->where("`group_id` = $target AND `id` != $target")->all();
+        //     Yii::$app->response->format = Response::FORMAT_JSON;
+        //     return ['group' => $allData];
+        // }
     }
 
     public function actionDelt() {
-        $id = Yii::$app->request->post('id', null);//this is the id of trash element 
-        $combine = Combine::findOne(['id' => $id]);
-        $combine->group_id = $combine->id;
-        if ($combine->update()) {
-            echo "success";
-        } else {
-            echo 'error';
-        }
+        // $id = Yii::$app->request->post('id', null);//this is the id of trash element 
+        // $combine = Combine::findOne(['id' => $id]);
+        // $combine->group_id = $combine->id;
+        // if ($combine->update()) {
+        //     echo "success";
+        // } else {
+        //     echo 'error';
+        // }
     }
 
     public function actionRename() {
-        $id = Yii::$app->request->post('id', null);
-        $name = Yii::$app->request->post('name', null);
-        $rename_d = Yii::$app->request->post('rename_d', false);
-        $initId = 0;
-        $remainId = 0;
-        if ($name != null) {
-            $renameTag = Combine::findOne(['id' => $id]);//要改的
-            $isRename = Combine::findOne(['name' => $name]);//重名的
+        // $id = Yii::$app->request->post('id', null);
+        // $name = Yii::$app->request->post('name', null);
+        // $rename_d = Yii::$app->request->post('rename_d', false);
+        // $initId = 0;
+        // $remainId = 0;
+        // if ($name != null) {
+        //     $renameTag = Combine::findOne(['id' => $id]);//要改的
+        //     $isRename = Combine::findOne(['name' => $name]);//重名的
 
-            if ($renameTag->group_id == 0) {
-                $renameTag->group_id = $renameTag->id;
-            }
+        //     if ($renameTag->group_id == 0) {
+        //         $renameTag->group_id = $renameTag->id;
+        //     }
 
-            if (!empty($isRename) && $renameTag->id != $isRename->id && $renameTag->group_id != $isRename->group_id) {
-                if ($rename_d == 'false' || $rename_d == false) {
-                    echo "Duplicate name exists.";
-                    return ;
-                }
-                if ($isRename->group_id == 0) {//If repeat part is a new tag
+        //     if (!empty($isRename) && $renameTag->id != $isRename->id && $renameTag->group_id != $isRename->group_id) {
+        //         if ($rename_d == 'false' || $rename_d == false) {
+        //             echo "Duplicate name exists.";
+        //             return ;
+        //         }
+        //         if ($isRename->group_id == 0) {//If repeat part is a new tag
 
-                    $initId = $isRename->id;//重名标签被隐藏
-                    $remainId = $id;
+        //             $initId = $isRename->id;//重名标签被隐藏
+        //             $remainId = $id;
 
-                    $isRename->group_id = $renameTag->group_id;
-                    $isRename->name = $isRename->name."(2)";
-                    if (!$isRename->update()) {
-                        $this->error("Fail to rename.");
-                        return ;
-                    }
+        //             $isRename->group_id = $renameTag->group_id;
+        //             $isRename->name = $isRename->name."(2)";
+        //             if (!$isRename->update()) {
+        //                 $this->error("Fail to rename.");
+        //                 return ;
+        //             }
 
-                    $renameTag->name = $name;
-                    if (!$renameTag->update()) {
-                        $this->error("Fail to rename.");
-                        return ;
-                    }
-                } else {
-                    $initId = $id;//要改的标签被隐藏
-                    $remainId = $isRename->id;
+        //             $renameTag->name = $name;
+        //             if (!$renameTag->update()) {
+        //                 $this->error("Fail to rename.");
+        //                 return ;
+        //             }
+        //         } else {
+        //             $initId = $id;//要改的标签被隐藏
+        //             $remainId = $isRename->id;
 
-                    $combines = Combine::updateAll(['group_id' => $isRename->group_id], ['group_id' => $renameTag->group_id]);
-                }
-                // $this->delete($initId, $remainId);
-                if ($isRename->id != $isRename->group_id) {
-                    //for hidden tags' id;= =Don't want to care for it anymore
-                    $remainId = $isRename->group_id;
-                }
-                echo '{remainId:"'.$remainId.'", initId:"'.$initId.'"}';
-            } else {
-                $renameTag->name = $name;
-                if (!$renameTag->update()) {
-                    $this->error("Rename cannot be the same value as before.");
-                    return ;
-                }
-            }
-        }
+        //             $combines = Combine::updateAll(['group_id' => $isRename->group_id], ['group_id' => $renameTag->group_id]);
+        //         }
+        //         // $this->delete($initId, $remainId);
+        //         if ($isRename->id != $isRename->group_id) {
+        //             //for hidden tags' id;= =Don't want to care for it anymore
+        //             $remainId = $isRename->group_id;
+        //         }
+        //         echo '{remainId:"'.$remainId.'", initId:"'.$initId.'"}';
+        //     } else {
+        //         $renameTag->name = $name;
+        //         if (!$renameTag->update()) {
+        //             $this->error("Rename cannot be the same value as before.");
+        //             return ;
+        //         }
+        //     }
+        // }
     }
 
     /*

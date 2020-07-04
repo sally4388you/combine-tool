@@ -10,7 +10,6 @@
 ?>
 
 	<div id="operation" class="col-md-8">
-		<!-- <a href="/filltrade" class="list-btn"><?php // Yii::$app->params[$lang]['list'] ?></a> -->
 		<form id="renameForm" onsubmit="return false;">
 			<?= Yii::$app->params[$lang]['rename'] ?><input class="form-control" id="rename" readonly>
 		</form>
@@ -50,8 +49,6 @@
 				<div class="panel-heading"><h3 class="panel-title"><?= Yii::$app->params[$lang]['pending'] ?></h3></div>
 				<div class="panel-body my-panel-body" id="dealing"></div>
 			</div>
-			<!-- <a href="javascript:void(0);"><i class='fa fa-tags fa-2x'></i><?php// Yii::$app->params[$lang]['process'] ?></a> -->
-            <!-- <a href="javascript:void(0)" id="list"><i class='fa fa-indent fa-2x'></i><?php // Yii::$app->params[$lang]['related'] ?></a> -->
 
 		</div>
 	</div>

@@ -129,7 +129,7 @@ class CombineController extends Controller
 
             if (!empty($isRename) && $renameTag->id != $isRename->id && $renameTag->group_id != $isRename->group_id) {
                 if ($rename_d == 'false' || $rename_d == false) {
-                    echo "有重名,是否要继续重命名?";
+                    echo "Duplicate name exists.";
                     return ;
                 }
                 if ($isRename->group_id == 0) {//If repeat part is a new tag
@@ -140,13 +140,13 @@ class CombineController extends Controller
                     $isRename->group_id = $renameTag->group_id;
                     $isRename->name = $isRename->name."(2)";
                     if (!$isRename->update()) {
-                        $this->error("重命标签更新group失败");
+                        $this->error("Fail to rename.");
                         return ;
                     }
 
                     $renameTag->name = $name;
                     if (!$renameTag->update()) {
-                        $this->error("重命名标签更新name失败");
+                        $this->error("Fail to rename.");
                         return ;
                     }
                 } else {
@@ -164,7 +164,7 @@ class CombineController extends Controller
             } else {
                 $renameTag->name = $name;
                 if (!$renameTag->update()) {
-                    $this->error("更新失败,不能更新为与之前或关联标签一样的值.");
+                    $this->error("Rename cannot be the same value as before.");
                     return ;
                 }
             }
@@ -183,15 +183,15 @@ class CombineController extends Controller
     }
 
     public function actionAddtag() {
-        $name = Yii::$app->request->post('name', null);
-        $combine = new Combine();
-        $combine->name = $name;
-        $combine->group_id = 0;
-        if ($combine->insert()) {
-            echo $combine->id;
-        } else {
-            echo 'error';
-        }
+        // $name = Yii::$app->request->post('name', null);
+        // $combine = new Combine();
+        // $combine->name = $name;
+        // $combine->group_id = 0;
+        // if ($combine->insert()) {
+        //     echo $combine->id;
+        // } else {
+        //     echo 'error';
+        // }
     }
 
     /*
@@ -210,16 +210,16 @@ class CombineController extends Controller
     **   actions in trashBox and trashList's index
     */
     public function actionIntotrash() {
-        $id = Yii::$app->request->post('id', null);//this is the id of trash element        
-        $isDelete = Yii::$app->request->post('isDelete', 0);//0 is out of trash; 1 is into trash
-        $combine = Combine::findOne(['id' => $id]);
-        $combine->isdelete = intval($isDelete);
-        if ($isDelete == 0) $combine->group_id = 0;
-        if ($combine->update()) {
-            echo "success";
-        } else {
-            echo 'error';
-        }
+        // $id = Yii::$app->request->post('id', null);//this is the id of trash element        
+        // $isDelete = Yii::$app->request->post('isDelete', 0);//0 is out of trash; 1 is into trash
+        // $combine = Combine::findOne(['id' => $id]);
+        // $combine->isdelete = intval($isDelete);
+        // if ($isDelete == 0) $combine->group_id = 0;
+        // if ($combine->update()) {
+        //     echo "success";
+        // } else {
+        //     echo 'error';
+        // }
     }
 
     public function actionTrashList() {

@@ -132,23 +132,23 @@ var combine = (function($) {
                 }
             }
         },
-        add : function() {
-            var name = $('#searchbox').val();
-            if (name == "") {
-                alert('Field cannot be empty.');
-            } else if (divOnclick == null) {
-                alert('Please select an index.');
-            } else {
-                $.post("/combine/addtag", "name=" + name, function(data) {
-                    if (data.match(/^\d+$/)) {
-                        $(divOnclick).before(addElmt("group" + data, "btn btn-sm btn-default mybutton", name));
-                        tags.tgs[data] = ['default', name];
-                        tags.init($('#group' + data)[0], data);
-                    }
-                    else alert('Something is wrong. Duplicate might exist.');
-                });
-            }
-        },
+        // add : function() {
+        //     var name = $('#searchbox').val();
+        //     if (name == "") {
+        //         alert('Field cannot be empty.');
+        //     } else if (divOnclick == null) {
+        //         alert('Please select an index.');
+        //     } else {
+        //         $.post("/combine/addtag", "name=" + name, function(data) {
+        //             if (data.match(/^\d+$/)) {
+        //                 $(divOnclick).before(addElmt("group" + data, "btn btn-sm btn-default mybutton", name));
+        //                 tags.tgs[data] = ['default', name];
+        //                 tags.init($('#group' + data)[0], data);
+        //             }
+        //             else alert('Something is wrong. Duplicate might exist.');
+        //         });
+        //     }
+        // },
         init : function(div, index) {
             div.onclick = function() {
                 divOnclick = this;
@@ -225,7 +225,7 @@ var combine = (function($) {
         intoDetail : function(index) {
             $('#combined').html('');
             tags.rename.init();
-            tags.rename.act();
+            // tags.rename.act();
             searchBox.search(tags.tgs[index][1], index);
             if (tags.tgs[index][0] == "success") {
                 $.get("/combine/search?id=" + index, function(data) {
@@ -310,24 +310,24 @@ var combine = (function($) {
     },
     trash = {
         lastClick : null,
-        act : function(type) {
-            var id = divOnclick.id.replace("group", "");
-            if (tags.tgs[id][0] == "success") {
-                alert('Cannot delete tags that have grouped with other tags.');
-                return ;
-            }
-            tags.clear(divOnclick);
-            $('#searchbox').val('');
-            $('search').html('');
-            var isDelete = (type == "out") ? 0 : 1;
-            var string = "id=" + id + "&isDelete=" + isDelete;
-            $.post("/combine/intotrash", string, function(data) {
-                if (data != "success") {
-                    alert('Something is wrong.');
-                }
-            });
-            divOnclick = null;
-        },
+        // act : function(type) {
+        //     var id = divOnclick.id.replace("group", "");
+        //     if (tags.tgs[id][0] == "success") {
+        //         alert('Cannot delete tags that have grouped with other tags.');
+        //         return ;
+        //     }
+        //     tags.clear(divOnclick);
+        //     $('#searchbox').val('');
+        //     $('search').html('');
+        //     var isDelete = (type == "out") ? 0 : 1;
+        //     var string = "id=" + id + "&isDelete=" + isDelete;
+        //     $.post("/combine/intotrash", string, function(data) {
+        //         if (data != "success") {
+        //             alert('Something is wrong.');
+        //         }
+        //     });
+        //     divOnclick = null;
+        // },
         initList : function() {
             $('#labels div').each(function() {
                 var id = this.id.replace(/group/, '');
@@ -341,11 +341,11 @@ var combine = (function($) {
                     trash.lastClick = this;
                     $(this).attr('class', 'btn btn-sm btn-danger mybutton');
                 });
-                $(this).dblclick(function() {
-                    if (confirm('Are you sure to bring back ' + this.innerHTML + ' ?')) {
-                        trash.act('out');
-                    }
-                });
+                // $(this).dblclick(function() {
+                //     if (confirm('Are you sure to bring back ' + this.innerHTML + ' ?')) {
+                //         trash.act('out');
+                //     }
+                // });
                 document.onkeydown = function(e){
                     e = window.event || e;
                     if(e.keyCode == 46){//del:delete
@@ -438,18 +438,18 @@ var combine = (function($) {
             tags.tgs[id] = [this.className.match(/btn-([a-z]*) mybutton/)[1], this.innerHTML];
             tags.init(this, id);
         });
-        $('#add').click(function() {
-            tags.add();
-        });
+        // $('#add').click(function() {
+        //     tags.add();
+        // });
         document.onkeydown = function(e){
             e = window.event || e;
-            if(e.keyCode == 46){//del:delete
-                if (!clickNull()) return;
-                if (confirm("Are you sure to delete " + divOnclick.innerHTML + "?")) {
-                    trash.act('in');
-                }
-                return false;
-            }
+            // if(e.keyCode == 46){//del:delete
+            //     if (!clickNull()) return;
+            //     if (confirm("Are you sure to delete " + divOnclick.innerHTML + "?")) {
+            //         trash.act('in');
+            //     }
+            //     return false;
+            // }
             if(e.keyCode == 83){//s:delt
                 if (searchBox.isFocus || tags.rename.isFocus) return ;
                 if (!clickNull()) return;

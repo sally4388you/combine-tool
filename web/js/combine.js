@@ -29,10 +29,10 @@ var combine = (function($) {
                 this.clear($("#group" + eleDrag_id)[0]);
                 $.post("/combine/merge", "el=" + eleDrag_id + "&target=" + target_id, function(data) {
                     if (typeof(data) == 'object') {
-                        $('#tips').html(tags.tgs[eleDrag_id][1] + "<font color='#000'>被合并到</font>" + tags.tgs[target_id][1]);
+                        $('#tips').html(tags.tgs[eleDrag_id][1] + "<font color='#000'> is merged into </font>" + tags.tgs[target_id][1]);
                         detailBox.showDetail(data);
                     }
-                    else alert('数据合并失败!请刷新恢复数据.');
+                    else alert('Something is wrong. Please refresh the page');
                 });
             }
         },
@@ -61,12 +61,12 @@ var combine = (function($) {
                 this.tgs[id][0] = "primary";
                 $.post("/combine/delt", "id=" + id, function(data) {
                     if (data != "success") {
-                        alert('数据处理失败!');
+                        alert('Something is wrong.');
                     }
                 });
             }
             else {
-                alert('已处理过');
+                alert('Already been processed');
             }
             divOnclick = null;
         },
@@ -102,7 +102,7 @@ var combine = (function($) {
                             } else if (/remainId/.test(data)) {
                                 var obj = eval ("(" + data + ")");
                                 tags.clear($('#group' + obj.initId)[0]);
-                                $('#tips').html(tags.tgs[obj.initId][1] + "<font color='#000'>被合并到</font>" + tags.tgs[obj.remainId][1]);
+                                $('#tips').html(tags.tgs[obj.initId][1] + "<font color='#000'> is merged into </font>" + tags.tgs[obj.remainId][1]);
                             } else if(/有重名/.test(data)) {
                                 if (confirm(data)) {
                                     tags.rename.rename_d = true;
@@ -135,9 +135,9 @@ var combine = (function($) {
         add : function() {
             var name = $('#searchbox').val();
             if (name == "") {
-                alert('添加内容不为空.');
+                alert('Field cannot be empty.');
             } else if (divOnclick == null) {
-                alert('请选择一个插入索引.');
+                alert('Please select an index.');
             } else {
                 $.post("/combine/addtag", "name=" + name, function(data) {
                     if (data.match(/^\d+$/)) {
@@ -145,7 +145,7 @@ var combine = (function($) {
                         tags.tgs[data] = ['default', name];
                         tags.init($('#group' + data)[0], data);
                     }
-                    else alert('添加失败，可能有重名');
+                    else alert('Something is wrong. Duplicate might exist.');
                 });
             }
         },
@@ -262,7 +262,7 @@ var combine = (function($) {
             $('#' + id).fadeOut();
             $.post("/combine/return", "id=" + id.replace(/detail/, ""), function(data) {
                 if (/[^0-9]+/.test(data)) {
-                    alert('数据还原失败!');
+                    alert('Something is wrong.');
                 }
                 else {
                     id = id.match(/\d+/);
@@ -313,7 +313,7 @@ var combine = (function($) {
         act : function(type) {
             var id = divOnclick.id.replace("group", "");
             if (tags.tgs[id][0] == "success") {
-                alert('不能删除有关联的标签.');
+                alert('Cannot delete tags that have grouped with other tags.');
                 return ;
             }
             tags.clear(divOnclick);
@@ -323,7 +323,7 @@ var combine = (function($) {
             var string = "id=" + id + "&isDelete=" + isDelete;
             $.post("/combine/intotrash", string, function(data) {
                 if (data != "success") {
-                    alert('数据删除失败!');
+                    alert('Something is wrong.');
                 }
             });
             divOnclick = null;
@@ -342,7 +342,7 @@ var combine = (function($) {
                     $(this).attr('class', 'btn btn-sm btn-danger mybutton');
                 });
                 $(this).dblclick(function() {
-                    if (confirm('确定还原 ' + this.innerHTML + ' ?')) {
+                    if (confirm('Are you sure to bring back ' + this.innerHTML + ' ?')) {
                         trash.act('out');
                     }
                 });
@@ -350,7 +350,7 @@ var combine = (function($) {
                     e = window.event || e;
                     if(e.keyCode == 46){//del:delete
                         if (clickNull() != true) return;
-                        if (confirm("删除后不可恢复，确定删除 " + divOnclick.innerHTML + " ?")) {
+                        if (confirm("Are you sure to delete " + divOnclick.innerHTML + " ?")) {
                             trash.REALdelete();
                         }
                         return false;
@@ -388,7 +388,7 @@ var combine = (function($) {
     },
     clickNull = function() {
         if (divOnclick == null) {
-            alert("没有选中任何标签!");
+            alert("Delete select anything.");
             return false;
         }
         else return true;
@@ -445,7 +445,7 @@ var combine = (function($) {
             e = window.event || e;
             if(e.keyCode == 46){//del:delete
                 if (!clickNull()) return;
-                if (confirm("确定删除" + divOnclick.innerHTML + "?")) {
+                if (confirm("Are you sure to delete " + divOnclick.innerHTML + "?")) {
                     trash.act('in');
                 }
                 return false;

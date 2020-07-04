@@ -3,10 +3,10 @@
 namespace app\controllers;
 
 use app\models\CompanyTag as Combine;
-use app\models\Exam;
-use app\models\Article;
+// use app\models\Exam;
+// use app\models\Article;
 use app\models\CompanyTrade;
-use app\models\ArticleCompanyTag;
+// use app\models\ArticleCompanyTag;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\data\Pagination;
@@ -26,15 +26,15 @@ class CombineController extends Controller
      */
     public function behaviors() {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
+        //     'access' => [
+        //         'class' => AccessControl::className(),
+        //         'rules' => [
+        //             [
+        //                 'allow' => true,
+        //                 'roles' => ['@'],
+        //             ],
+        //         ],
+        //     ],
         ];
     }
     
@@ -155,7 +155,7 @@ class CombineController extends Controller
 
                     $combines = Combine::updateAll(['group_id' => $isRename->group_id], ['group_id' => $renameTag->group_id]);
                 }
-                $this->delete($initId, $remainId);
+                // $this->delete($initId, $remainId);
                 if ($isRename->id != $isRename->group_id) {
                     //for hidden tags' id;= =Don't want to care for it anymore
                     $remainId = $isRename->group_id;
@@ -241,67 +241,67 @@ class CombineController extends Controller
         ]);
     }
 
-    public function delete($initId, $remainId) {
-        $articleIds = [];
-        $repeatIds = [];
-        $connection = Yii::$app->db;
-        $transaction = $connection->beginTransaction();
-        try {
-            Combine::findOne(['id' => $initId])->delete();
-            Exam::updateAll(['company_tag_id' => $remainId], ['company_tag_id' => $initId]);
-            ArticleCompanyTag::updateAll(['company_tag_id' => $remainId], ['company_tag_id' => $initId]);
-            $transaction->commit();
-        } catch(Exception $e){
-            $transaction->rollBack();
-            echo $e;
-            return ;
-        }
+    // public function delete($initId, $remainId) {
+    //     $articleIds = [];
+    //     $repeatIds = [];
+    //     $connection = Yii::$app->db;
+    //     $transaction = $connection->beginTransaction();
+    //     try {
+    //         Combine::findOne(['id' => $initId])->delete();
+    //         // Exam::updateAll(['company_tag_id' => $remainId], ['company_tag_id' => $initId]);
+    //         // ArticleCompanyTag::updateAll(['company_tag_id' => $remainId], ['company_tag_id' => $initId]);
+    //         $transaction->commit();
+    //     } catch(Exception $e){
+    //         $transaction->rollBack();
+    //         echo $e;
+    //         return ;
+    //     }
 
-        $transaction = $connection->beginTransaction();
-        $ArticleCompanyTags = ArticleCompanyTag::find()->where(['company_tag_id' => $remainId])->all();
-        foreach ($ArticleCompanyTags as $tag) {
-            $articleIds[$tag->id] = $tag->article_id;
-        }
-        asort($articleIds);
-        while (list($key, $val) = each($articleIds)) {
-            if ($val == current($articleIds)) {
-                next($articleIds);
-                $repeatIds[] = $key;
-            }
-        }
-        try {
-            ArticleCompanyTag::deleteAll(['id' => $repeatIds]);
-            $transaction->commit();
-        } catch(Exception $e){
-            $transaction->rollBack();
-            echo $e;
-            return ;
-        }
-    }
+    //     $transaction = $connection->beginTransaction();
+    //     $ArticleCompanyTags = ArticleCompanyTag::find()->where(['company_tag_id' => $remainId])->all();
+    //     foreach ($ArticleCompanyTags as $tag) {
+    //         $articleIds[$tag->id] = $tag->article_id;
+    //     }
+    //     asort($articleIds);
+    //     while (list($key, $val) = each($articleIds)) {
+    //         if ($val == current($articleIds)) {
+    //             next($articleIds);
+    //             $repeatIds[] = $key;
+    //         }
+    //     }
+    //     try {
+    //         ArticleCompanyTag::deleteAll(['id' => $repeatIds]);
+    //         $transaction->commit();
+    //     } catch(Exception $e){
+    //         $transaction->rollBack();
+    //         echo $e;
+    //         return ;
+    //     }
+    // }
 
     public function error($text) {
         $error = $text;
         echo $error;
     }
 
-    public function actionGetmj() {
-        $id = Yii::$app->request->post('id', null);
-        $exams = Exam::find()->select('id,work_name')->where(['company_tag_id' => $id])->all();
-        $mjs_id = (new Query())
-            ->select('article_id')
-            ->from('mjfx_article_company_tag')
-            ->where(['company_tag_id' => $id])->all();
-        $mjIds = [];
-        foreach ($mjs_id as $mj) {
-            $mjIds[] = $mj['article_id'];
-        }
-        $mjs = Article::find()->select('id,title')->where(['id' => $mjIds])->all();
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return [
-            'exams' => $exams,
-            'mjs' => $mjs,
-        ];
-    }
+    // public function actionGetmj() {
+    //     $id = Yii::$app->request->post('id', null);
+    //     $exams = Exam::find()->select('id,work_name')->where(['company_tag_id' => $id])->all();
+    //     $mjs_id = (new Query())
+    //         ->select('article_id')
+    //         ->from('mjfx_article_company_tag')
+    //         ->where(['company_tag_id' => $id])->all();
+    //     $mjIds = [];
+    //     foreach ($mjs_id as $mj) {
+    //         $mjIds[] = $mj['article_id'];
+    //     }
+    //     $mjs = Article::find()->select('id,title')->where(['id' => $mjIds])->all();
+    //     Yii::$app->response->format = Response::FORMAT_JSON;
+    //     return [
+    //         'exams' => $exams,
+    //         'mjs' => $mjs,
+    //     ];
+    // }
 
 }
 

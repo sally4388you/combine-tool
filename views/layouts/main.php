@@ -51,12 +51,12 @@ $lang = $session->get('language');
                     // ['label' => Yii::$app->params[$lang]['add_inter'], 'url' => ['/article/create']],
                     // ['label' => Yii::$app->params[$lang]['classify'], 'url' => ['/article?groupby=1']],
                     // ['label' => Yii::$app->params[$lang]['add_written'], 'url' => ['/exams#/new']],
-                    // Yii::$app->user->isGuest ?
-                    //     ['label' => Yii::$app->params[$lang]['login'], 'url' => ['/site/login']] :
-                    //     ['label' => Yii::$app->params[$lang]['logout'].' (' . Yii::$app->user->identity->username . ')',
-                    //     'url' => ['/site/logout'],
-                    //     'linkOptions' => ['data-method' => 'post']],
-                    //     ['label' => Yii::$app->params[$lang]['language'], 'url' => '?lang='.($lang == 'en'?'zh-CN':'en')],
+                    Yii::$app->user->isGuest ?
+                        ['label' => Yii::$app->params[$lang]['login'], 'url' => ['/site/login']] :
+                        ['label' => Yii::$app->params[$lang]['logout'].' (' . Yii::$app->user->identity->username . ')',
+                        'url' => ['/site/logout'],
+                        'linkOptions' => ['data-method' => 'post']],
+                        ['label' => Yii::$app->params[$lang]['language'], 'url' => '?lang='.($lang == 'en'?'zh-CN':'en')],
                 ],
             ]);
             NavBar::end();

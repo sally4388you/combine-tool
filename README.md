@@ -1,6 +1,6 @@
 ### Online sample please check:
 
-http://123.207.124.224:88/combine
+http://combine.qblaboratory.cn/
 * Username for testing: qibuer
 * Password: 123456
 

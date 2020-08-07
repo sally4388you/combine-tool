@@ -1,8 +1,6 @@
 ### Online sample please check:
 
 http://combine.qblaboratory.cn/
-* Username for testing: qibuer
-* Password: 123456
 
 ### Function of this tool:
 * Combine company names which mean exactly the same company.

@@ -42,4 +42,15 @@ class EtracsController extends \yii\web\Controller
 //        }
     }
 
+    public function actionList()
+    {
+        $models = EtracsRetrospective::find()->all();
+        foreach ($models as $model) {
+            echo $model->question_1.'<br />';
+            echo $model->question_2.'<br />';
+            echo $model->question_3.'<br />';
+            echo '<br />';
+        }
+    }
+
 }

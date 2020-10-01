@@ -28,6 +28,7 @@ class EtracsRetrospective extends ActiveRecord
     public function rules()
     {
         return [
+            [['question_1', 'question_2', 'question_3'], 'required'],
             [['question_1', 'question_2', 'question_3'], 'string', 'max' => 500],
         ];
     }

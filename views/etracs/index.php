@@ -27,11 +27,11 @@ $this->title = 'eTRACS Retrospective';
 
 <?php $form = ActiveForm::begin(['method' => 'post']); ?>
 
-<?= $form->field($model, 'question_1')->textInput()->error(false) ?>
+<?= $form->field($model, 'question_1')->textInput()->error() ?>
 
-<?= $form->field($model, 'question_2')->textInput()->error(false) ?>
+<?= $form->field($model, 'question_2')->textInput()->error() ?>
 
-<?= $form->field($model, 'question_3')->textInput()->error(false) ?>
+<?= $form->field($model, 'question_3')->textInput()->error() ?>
 
 <div class="form-group">
     <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>

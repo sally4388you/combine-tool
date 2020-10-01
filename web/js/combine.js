@@ -61,11 +61,11 @@ var combine = (function($) {
             if (this.tgs[id][0] == 'default') {
                 divOnclick.className = "btn btn-sm btn-primary mybutton";
                 this.tgs[id][0] = "primary";
-                $.post("/combine/delt", "id=" + id, function(data) {
-                    if (data != "success") {
-                        alert('Something is wrong.');
-                    }
-                });
+                //$.post("/combine/delt", "id=" + id, function(data) {
+                //    if (data != "success") {
+                //        alert('Something is wrong.');
+                //    }
+                //});
             }
             else {
                 alert('Already been processed');
@@ -263,27 +263,27 @@ var combine = (function($) {
         returnBack : function(id) {
             this.count -= 1;
             $('#' + id).fadeOut();
-            $.post("/combine/return", "id=" + id.replace(/detail/, ""), function(data) {
-                if (/[^0-9]+/.test(data)) {
-                    alert('Something is wrong.');
-                }
-                else {
-                    id = id.match(/\d+/);
-                    var content = $('#detail' + id + ' span').text().replace(/\s+/, '');
-                    var addText = addElmt("group" + id, "btn btn-sm btn-primary mybutton", content);
-                    if (divOnclick != null) {
-                        $(divOnclick).before(addText);
-                    } else {
-                        $('#labels').append(addText);
-                    }
-                    tags.tgs[id] = ["primary", content];
-                    tags.init($('#group' + id)[0], id);
-                    if (detailBox.count <= 0) {
-                        $('#group' + data).attr('class', 'btn btn-sm btn-primary mybutton');
-                        tags.tgs[data][0] = "primary";
-                    }
-                }
-            });
+            //$.post("/combine/return", "id=" + id.replace(/detail/, ""), function(data) {
+            //    if (/[^0-9]+/.test(data)) {
+            //        alert('Something is wrong.');
+            //    }
+            //    else {
+            //        id = id.match(/\d+/);
+            //        var content = $('#detail' + id + ' span').text().replace(/\s+/, '');
+            //        var addText = addElmt("group" + id, "btn btn-sm btn-primary mybutton", content);
+            //        if (divOnclick != null) {
+            //            $(divOnclick).before(addText);
+            //        } else {
+            //            $('#labels').append(addText);
+            //        }
+            //        tags.tgs[id] = ["primary", content];
+            //        tags.init($('#group' + id)[0], id);
+            //        if (detailBox.count <= 0) {
+            //            $('#group' + data).attr('class', 'btn btn-sm btn-primary mybutton');
+            //            tags.tgs[data][0] = "primary";
+            //        }
+            //    }
+            //});
         }
     },
     dealing = {
@@ -370,22 +370,22 @@ var combine = (function($) {
         init : function() {
             $('#list').click(function() {
                 if (!clickNull()) return ;
-                $.post("/combine/getmj", "id=" + divOnclick.id.replace('group', ''), function(data) {
-                    if (typeof(data) == "object") {
-                        xxx = data;
-                        var html_mj = "";
-                        var html_exam = "";
-                        for(var i = 0; i < data.mjs.length; i ++) {
-                            html_mj += "<a href='/article/update?id=" + data.mjs[i].id + "&groupby=1' target='_blank'>" + data.mjs[i].title + "</a>";
-                        }
-                        for(var i = 0; i < data.exams.length; i ++) {
-                            html_exam += "<a href='/exams#/view/" + data.exams[i].id + "' target='_blank'>" + data.exams[i].work_name + "</a>";
-                        }
-                        $('#mj').html(html_mj);
-                        $('#exam').html(html_exam);
-                        $('#myModal').modal('show');
-                    }
-                })
+                //$.post("/combine/getmj", "id=" + divOnclick.id.replace('group', ''), function(data) {
+                //    if (typeof(data) == "object") {
+                //        xxx = data;
+                //        var html_mj = "";
+                //        var html_exam = "";
+                //        for(var i = 0; i < data.mjs.length; i ++) {
+                //            html_mj += "<a href='/article/update?id=" + data.mjs[i].id + "&groupby=1' target='_blank'>" + data.mjs[i].title + "</a>";
+                //        }
+                //        for(var i = 0; i < data.exams.length; i ++) {
+                //            html_exam += "<a href='/exams#/view/" + data.exams[i].id + "' target='_blank'>" + data.exams[i].work_name + "</a>";
+                //        }
+                //        $('#mj').html(html_mj);
+                //        $('#exam').html(html_exam);
+                //        $('#myModal').modal('show');
+                //    }
+                //})
             });
         }
     },

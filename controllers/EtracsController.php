@@ -31,15 +31,15 @@ class EtracsController extends \yii\web\Controller
 
         $model = new EtracsRetrospective();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-            return $this->render('congrats');
+//          return $this->render('congrats');
 
-        } else {
+//        } else {
             return $this->render('index', [
                 'model' => $model,
             ]);
-        }
+//        }
     }
 
 }
